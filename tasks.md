@@ -1,40 +1,31 @@
-# Reverse Engineering Tasks – Black Box Reimbursement System
+# Project Tasks
 
-## Goal
-Achieve a perfect replica of the legacy ACME reimbursement algorithm by truly reverse-engineering its logic, quirks, and bugs—so that the model scores 0 on both public and private datasets.
+## Task 1: Data Exploration and Hypothesis Extraction
+- Perform exploratory data analysis (EDA) on `public_cases.json` to understand input distributions and relationships.
+- Extract hypotheses from `INTERVIEWS.md` regarding potential rules and quirks in the legacy system.
+- Document findings in `docs/EDA.md` and `docs/hypotheses.yaml`.
 
-## Task 1: Data & Interview Mining
-- Perform deep exploratory data analysis (EDA) on `public_cases.json` to uncover patterns, discontinuities, and edge behaviors.
-- Systematically extract all hypotheses, rules, and quirks from `INTERVIEWS.md` and other documentation.
-- Document all findings and candidate rules in `docs/EDA.md` and `docs/hypotheses.yaml`.
+## Task 2: Baseline and Feature Engineering
+- Implement a baseline linear regression model using the raw input features.
+- Develop additional features inspired by extracted hypotheses (e.g., miles_per_day, boolean flags for specific conditions).
+- Evaluate the baseline model and engineered features using cross-validation.
+- Document results in `docs/baseline_report.md`.
 
-## Task 2: Hypothesis-Driven Rule Extraction
-- For each extracted hypothesis (e.g., 5-day bonus, mileage tiers, rounding bugs, magic numbers), design targeted tests to confirm or refute its presence in the public data.
-- Quantify the impact of each rule/quirk on the output using controlled experiments.
-- Maintain a living document of all confirmed, rejected, and uncertain rules.
+## Task 3: Advanced Modeling
+- Fit a polynomial regression model using the engineered features.
+- Implement a k-NN regressor as a fallback model.
+- Compare model performances and document in `docs/model_comparison.md`.
 
-## Task 3: Explicit Rule Encoding
-- Translate all high-confidence rules and quirks into explicit, dependency-free Python code.
-- Ensure the code is modular, with each rule/quirk clearly documented and testable in isolation.
-- Build a comprehensive test suite to validate each rule against known cases and edge cases.
+## Task 4: Rule-Based System and Final Model Selection
+- Translate high-confidence hypotheses into explicit rules and implement a rule-based system.
+- Compare rule-based system with advanced models and select the best approach or ensemble.
+- Document the final model choice and rationale in `docs/final_choice.md`.
 
-## Task 4: Model Integration & Fallbacks
-- Integrate all explicit rules into a single reimbursement engine.
-- For ambiguous or unexplained cases, use a minimal fallback (e.g., k-NN) only as a last resort, and document every such instance.
-- Avoid any overfitting to the public set; use it only to validate the generality of discovered rules.
+## Task 5: Production Implementation and Testing
+- Implement the chosen model in a dependency-free Python module `reimbursement_engine.py`.
+- Replace `run.sh.template` with `run.sh` to call the new engine.
+- Conduct performance and edge-case testing, documenting results in `docs/performance.md` and `edge_case_results.txt`.
 
-## Task 5: Edge Case & Quirk Probing
-- Systematically probe the system with synthetic and edge-case inputs (e.g., extreme values, magic receipt numbers, rounding edge cases).
-- Document all observed anomalies and update the rule set accordingly.
-- Ensure all known bugs and quirks (e.g., rounding bug, small receipts penalty, vacation penalty) are faithfully reproduced.
-
-## Task 6: Documentation & Explainability
-- Maintain clear, comprehensive documentation of every discovered rule, quirk, and bug, including its origin (data/interview) and supporting evidence.
-- Update `README.md`, `docs/final_choice.md`, and `docs/performance.md` to reflect the reverse-engineering process and rationale for every rule.
-- Provide a mapping from each interview hypothesis to its implementation or rejection.
-
-## Task 7: Final Validation & Submission
-- Validate the final engine on the public set as a sanity check (not as a target for optimization).
-- Generate `private_results.txt` using the final engine.
-- Ensure all code, documentation, and results are reproducible and ready for submission.
-- Submit the repository and results as instructed, with confidence that the system is a true replica of the legacy logic. 
+## Task 6: Documentation and Submission
+- Update `README.md` with algorithm explanation, performance metrics, and usage instructions.
+- Generate `private_results.txt` and ensure all documentation and code are ready for submission. 
