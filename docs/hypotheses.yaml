@@ -1,0 +1,53 @@
+# Extracted hypotheses and quirks from INTERVIEWS.md
+- id: five_day_bonus
+  description: 5-day trips almost always get a bonus, but not always. 4- or 6-day trips do not.
+  source: Lisa from Accounting
+  confidence: medium
+- id: mileage_tiers
+  description: Mileage reimbursement is tiered; first ~100 miles at full rate, then drops, but not linearly. Possibly a curve.
+  source: Lisa from Accounting, Marcus from Sales
+  confidence: high
+- id: efficiency_bonus
+  description: High miles-per-day (esp. 180-220) get a bonus, but too high or too low is penalized. Efficiency is not linear.
+  source: Kevin from Procurement
+  confidence: high
+- id: receipts_diminishing_returns
+  description: Receipts have diminishing returns; medium-high ($600-800) get best treatment, high amounts get capped, low amounts can be penalized.
+  source: Lisa from Accounting, Marcus from Sales
+  confidence: high
+- id: small_receipts_penalty
+  description: Submitting very small receipts can result in lower reimbursement than submitting none at all.
+  source: Dave from Marketing, Jennifer from HR
+  confidence: high
+- id: quarterly_variation
+  description: End of quarter or Q2 may be more generous, but evidence is mixed.
+  source: Marcus from Sales, Lisa from Accounting, Jennifer from HR
+  confidence: low
+- id: submission_timing
+  description: Day of week (Tues/Thurs best, Friday worst) and possibly lunar cycle affect reimbursement.
+  source: Kevin from Procurement, Dave from Marketing
+  confidence: low
+- id: rounding_bug
+  description: Receipts ending in .49 or .99 may get rounded up twice, resulting in a small bonus.
+  source: Lisa from Accounting
+  confidence: medium
+- id: user_history_effect
+  description: System may adjust generosity based on user's past reports (stingy after big reports, generous after modest ones).
+  source: Marcus from Sales, Kevin from Procurement
+  confidence: low
+- id: department_effect
+  description: Sales and experienced employees tend to get better reimbursements; new hires and ops get less unless strategic.
+  source: Jennifer from HR, Marcus from Sales
+  confidence: medium
+- id: magic_number
+  description: Certain receipt totals (e.g. $847) are rumored to trigger better reimbursements.
+  source: Marcus from Sales
+  confidence: low
+- id: vacation_penalty
+  description: Long trips (8+ days) with high spending are penalized.
+  source: Kevin from Procurement
+  confidence: medium
+- id: sweet_spot_combo
+  description: 5-day, 180+ miles/day, under $100/day spending is a guaranteed bonus.
+  source: Kevin from Procurement
+  confidence: medium 

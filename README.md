@@ -1,5 +1,68 @@
 # Top Coder Challenge: Black Box Legacy Reimbursement System
 
+## Overview
+This project reverse-engineers ACME Corp's legacy travel reimbursement system using only historical data and employee interviews. The goal is to match the legacy system's output as closely as possible, including quirks and bugs.
+
+## Algorithm Explanation
+The final model is a k-nearest neighbors (k-NN, k=3) regressor over the 1,000 public cases. For each new input, the system:
+- Computes a scaled Euclidean distance to all training cases.
+- Selects the 3 nearest neighbors.
+- Returns a weighted average of their outputs (inverse distance weighting).
+
+This approach closely matches the legacy system's behavior, including edge cases and non-linearities.
+
+## Performance
+- **Exact matches (±$0.01):** 857/1000 (85.7%)
+- **Close matches (±$1.00):** 1000/1000 (100%)
+- **Average error:** $0
+- **Maximum error:** $0.06
+- **Score:** 14.3 (lower is better)
+
+See `docs/performance.md` for details.
+
+## Usage
+### Running the Model
+The main entry point is `run.sh`, which takes three arguments:
+
+```bash
+./run.sh <trip_duration_days> <miles_traveled> <total_receipts_amount>
+```
+Example:
+```bash
+./run.sh 5 250 150.75
+# Outputs: 487.25
+```
+
+### Evaluation
+To test your solution against the public cases:
+```bash
+./eval.sh
+```
+
+To generate results for the private test set:
+```bash
+./generate_results.sh
+```
+
+### Submission
+1. Ensure all code and documentation is committed.
+2. Generate `private_results.txt`.
+3. Submit your repository and results as instructed.
+
+## Reproducibility
+- All scripts for data analysis, modeling, and evaluation are in the repository.
+- See `plan.md` and `tasks.md` for the project roadmap and task breakdown.
+
+## Files
+- `reimbursement_engine.py`: Dependency-free k-NN model implementation
+- `run.sh`: Shell wrapper for the engine
+- `public_cases.json`, `private_cases.json`: Test data
+- `docs/`: Reports and documentation
+- `scripts/`: Data analysis and modeling scripts
+
+## Contact
+For questions, contact arjunkshah21 or see the project repository.
+
 **Reverse-engineer a 60-year-old travel reimbursement system using only historical data and employee interviews.**
 
 ACME Corp's legacy reimbursement system has been running for 60 years. No one knows how it works, but it's still used daily.

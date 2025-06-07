@@ -1,0 +1,26 @@
+Top 20 largest errors:
+Case 366: input=('11', '740', '1171.99') expected=902.09 pred=902.15 error=0.0600
+Case 473: input=('11', '741', '1207.39') expected=1878.06 pred=1878.01 error=0.0500
+Case 151: input=('4', '69', '2321.49') expected=322.0 pred=322.04 error=0.0400
+Case 208: input=('13', '534', '1765.96') expected=1881.36 pred=1881.39 error=0.0300
+Case 839: input=('4', '842', '893.25') expected=1324.64 pred=1324.61 error=0.0300
+Case 8: input=('3', '121', '21.17') expected=464.07 pred=464.04 error=0.0300
+Case 9: input=('3', '117', '21.99') expected=359.1 pred=359.13 error=0.0300
+Case 89: input=('5', '754', '489.99') expected=765.13 pred=765.16 error=0.0300
+Case 114: input=('5', '195.73', '1228.49') expected=511.23 pred=511.26 error=0.0300
+Case 333: input=('13', '529', '1767.79') expected=2015.18 pred=2015.15 error=0.0300
+Case 369: input=('4', '825', '874.99') expected=784.52 pred=784.55 error=0.0300
+Case 683: input=('8', '795', '1645.99') expected=644.69 pred=644.72 error=0.0300
+Case 710: input=('5', '516', '1878.49') expected=669.85 pred=669.88 error=0.0300
+Case 519: input=('14', '481', '939.99') expected=877.17 pred=877.19 error=0.0200
+Case 547: input=('8', '482', '1411.49') expected=631.81 pred=631.83 error=0.0200
+Case 21: input=('5', '173', '1337.9') expected=1443.96 pred=1443.94 error=0.0200
+Case 24: input=('5', '708', '1129.52') expected=1654.62 pred=1654.6 error=0.0200
+Case 81: input=('6', '204', '818.99') expected=628.4 pred=628.42 error=0.0200
+Case 83: input=('1', '451', '555.49') expected=162.18 pred=162.2 error=0.0200
+Case 168: input=('7', '948', '657.17') expected=1578.97 pred=1578.95 error=0.0200
+
+Exact matches (<$0.01): 959/1000
+Close matches (<$1.00): 1000/1000
+Max error: 0.0600
+Mean absolute error: 0.0019
