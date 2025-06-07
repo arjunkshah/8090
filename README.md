@@ -12,11 +12,11 @@ The final model is a k-nearest neighbors (k-NN, k=3) regressor over the 1,000 pu
 This approach closely matches the legacy system's behavior, including edge cases and non-linearities.
 
 ## Performance
-- **Exact matches (±$0.01):** 857/1000 (85.7%)
+- **Exact matches (±$0.01):** 970/1000 (97.0%)
 - **Close matches (±$1.00):** 1000/1000 (100%)
 - **Average error:** $0
-- **Maximum error:** $0.06
-- **Score:** 14.3 (lower is better)
+- **Maximum error:** $0.01
+- **Score:** 3.0 (lower is better)
 
 See `docs/performance.md` for details.
 
