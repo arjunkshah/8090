@@ -88,3 +88,37 @@ When you're ready to submit:
 ---
 
 **Good luck and Bon Voyage!**
+
+## Approach
+
+The current `reimbursement_engine.py` implements a polynomial regression model trained on the public dataset. The model uses degree-2 features of the three input variables (days, miles, receipts) and applies coefficients hard coded in the module. The calculation is dependency free and executed via `run.sh`.
+
+## Performance
+
+Running `./eval.sh` on the public cases yields the following summary:
+
+- **Exact matches:** 0 of 1000
+- **Close matches (±$1):** 7 of 1000
+- **Average error:** $109.85
+- **Maximum error:** $1141.30
+
+This simple baseline shows the evaluation workflow but clearly does not yet reproduce the legacy system.
+
+## Usage
+
+1. Make sure `run.sh` is executable:
+   ```bash
+   chmod +x run.sh
+   ```
+2. To compute a single reimbursement amount:
+   ```bash
+   ./run.sh <trip_duration_days> <miles_traveled> <total_receipts_amount>
+   ```
+3. To evaluate against the public dataset:
+   ```bash
+   bash eval.sh
+   ```
+4. To generate results for submission (creates `private_results.txt`):
+   ```bash
+   bash generate_results.sh
+   ```
