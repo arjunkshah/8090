@@ -1,0 +1,15 @@
+Rule-Based Model Results:
+- Public Cases: 0 exact matches, 1 close match (±.00)
+- Synthetic Cases: 3 exact matches, 8 close matches (±.00)
+- Average Error (Public): .15
+- Average Error (Synthetic): .44
+- Maximum Error (Public): .52
+- Maximum Error (Synthetic): .75
+
+Model Configuration:
+- Base per-day rate: .00
+- 5-day trip bonus: .00
+- Mileage rates: 0.58 (first 100 miles), 0.05 (above 100, capped at 300)
+- Receipt rates: 0.80 (first ), 0.05 (above , capped at )
+- Efficiency bonus: 0.05 multiplier, capped at 
+- Special cents bonus: .00 for .49 or .99 endings

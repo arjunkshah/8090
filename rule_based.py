@@ -1,45 +1,46 @@
 import math
 
-# Rule-based reimbursement calculation derived from interview hints.
-
 def calculate_reimbursement(trip_duration_days, miles_traveled, total_receipts_amount):
-    """Compute reimbursement using explicit rules."""
-    td = float(trip_duration_days)
+    """Pure rule-based reimbursement calculation with balanced rates."""
+    td = int(trip_duration_days)
     miles = float(miles_traveled)
     receipts = float(total_receipts_amount)
 
-    # Base daily rate
-    amount = 100.0 * td
+    reimbursement = 0.0
 
-    # Bonus for exactly 5 day trips (mentioned by accounting)
+    # --- 1. Base per-day rate ---
+    reimbursement += round(td * 85.0, 2)  # Balanced base rate
+
+    # --- 2. 5-day trip bonus ---
     if td == 5:
-        amount += 50.0
+        reimbursement += 50.0
 
-    # Mileage reimbursement with tiered rates
-    first_100 = min(miles, 100)
-    extra = max(miles - 100, 0)
-    mileage_amt = 0.58 * first_100 + 0.35 * extra
-    amount += mileage_amt
+    # --- 3. Mileage reimbursement ---
+    first_100_miles = min(miles, 100)
+    above_100_miles = min(max(miles - 100, 0), 300)  # Cap at 300 miles
+    mileage_amt = round(0.58 * first_100_miles + 0.05 * above_100_miles, 2)  # Balanced rate
+    reimbursement += mileage_amt
 
-    # Efficiency bonus for high mileage per day
-    if td > 0 and (miles / td) > 150:
-        amount += 0.10 * mileage_amt
+    # --- 4. Receipt reimbursement ---
+    first_100_receipts = min(receipts, 100)
+    above_100_receipts = min(max(receipts - 100, 0), 300)  # Cap at $300
+    receipt_amt = round(0.8 * first_100_receipts + 0.05 * above_100_receipts, 2)  # Balanced rate
+    reimbursement += receipt_amt
 
-    # Receipt reimbursement with diminishing returns
-    if receipts < 50:
-        receipt_amt = receipts * 0.5
-    elif receipts <= 800:
-        receipt_amt = receipts * 0.9
-    else:
-        receipt_amt = 720 + (receipts - 800) * 0.25
+    # --- 5. Efficiency bonus ---
+    miles_per_day = miles / td if td > 0 else 0
+    if miles_per_day > 100:
+        efficiency_bonus = min((miles_per_day - 100) * 0.05 * td, 100.0)  # Capped at $100
+        efficiency_bonus = round(efficiency_bonus, 2)
+        reimbursement += efficiency_bonus
 
-    # Rounding bug: extra for receipts ending in 49 or 99 cents
+    # --- 6. Special rounding/receipt cents bonus ---
     cents = int(round(receipts * 100)) % 100
     if cents in (49, 99):
-        receipt_amt += 5.0
+        reimbursement += 5.0
 
-    amount += receipt_amt
-    return round(amount, 2)
+    # --- 7. Final rounding ---
+    return round(reimbursement, 2)
 
 if __name__ == "__main__":
     import sys
