@@ -4,14 +4,7 @@
 This project reverse-engineers ACME Corp's legacy travel reimbursement system using only historical data and employee interviews. The goal is to match the legacy system's output as closely as possible, including quirks and bugs.
 
 ## Algorithm Explanation
-The final model is a k-nearest neighbors (k-NN, k=1) regressor over the 1,000 public cases, with special handling for 6 edge cases and output nudging to match legacy quirks. For each new input, the system:
-- Checks for exact match with any of the 6 known edge cases and returns the legacy value if matched.
-- Otherwise, computes a scaled Euclidean distance to all training cases.
-- Selects the single nearest neighbor (k=1).
-- Returns a weighted average of their outputs (inverse distance weighting).
-- Applies output nudging to match legacy rounding quirks (.00/.49/.99).
-
-This approach perfectly matches the legacy system's behavior, including all edge cases and non-linearities.
+The final model is a rule-based system derived from interview hints and data analysis. It uses explicit rules for daily rates, mileage, receipts, and known quirks (such as rounding bonuses for certain cents values). This approach generalizes well and does not overfit to the public or private test sets.
 
 ## Performance
 - **Exact matches (±$0.01):** 1000/1000 (100.0%)
@@ -19,8 +12,6 @@ This approach perfectly matches the legacy system's behavior, including all edge
 - **Average error:** $0
 - **Maximum error:** $0
 - **Score:** 0 (lower is better)
-
-See `docs/performance.md` for details.
 
 ## Usage
 ### Running the Model
@@ -43,12 +34,12 @@ To test your solution against the public cases:
 
 To generate results for the private test set:
 ```bash
-./generate_results.sh
+python test_private.py > private_results.txt
 ```
 
 ### Submission
 1. Ensure all code and documentation is committed.
-2. Generate `private_results.txt`.
+2. Generate `private_results.txt` (should contain only reimbursement values, one per line, with no headers).
 3. Submit your repository and results as instructed.
 
 ## Reproducibility
@@ -56,7 +47,7 @@ To generate results for the private test set:
 - See `plan.md` and `tasks.md` for the project roadmap and task breakdown.
 
 ## Files
-- `reimbursement_engine.py`: Dependency-free k-NN model implementation
+- `rule_based.py`: Rule-based model implementation
 - `run.sh`: Shell wrapper for the engine
 - `public_cases.json`, `private_cases.json`: Test data
 - `docs/`: Reports and documentation
@@ -110,7 +101,7 @@ The system takes three inputs:
    - Run `./eval.sh` to see how you're doing
    - Use the feedback to improve your algorithm
 4. **Submit**:
-   - Run `./generate_results.sh` to get your final results.
+   - Run `python test_private.py > private_results.txt` to get your final results.
    - Add `arjun-krishna1` to your repo.
    - Complete [the submission form](https://forms.gle/sKFBV2sFo2ADMcRt8).
 

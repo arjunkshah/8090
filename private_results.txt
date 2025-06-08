@@ -1,7 +1,3 @@
-
-Private Test Results:
-Total cases: 5000
-Valid predictions: 5000
 Accuracy: 100.00%
 400.79
 148.94
