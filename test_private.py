@@ -60,5 +60,16 @@ def test_private_cases():
             print(f"Calculated: ${error['calculated']:.2f}")
             print(f"Reason: {error['reason']}")
 
+def main():
+    with open('private_cases.json', 'r') as f:
+        cases = json.load(f)
+    for case in cases:
+        days = case['trip_duration_days']
+        miles = case['miles_traveled']
+        receipts = case['total_receipts_amount']
+        calculated = calculate_reimbursement(days, miles, receipts)
+        print(f"{calculated}")
+
 if __name__ == "__main__":
-    test_private_cases() 
+    test_private_cases()
+    main() 
